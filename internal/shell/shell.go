@@ -9,8 +9,9 @@ import (
 )
 
 var CommandRegistry = map[string]ports.CommandPort{
-	"echo": adapters.EchoAdapter{},
-	"ls":   adapters.LsAdapter{},
+	"echo":  adapters.EchoAdapter{},
+	"ls":    adapters.LsAdapter{},
+	"clear": adapters.ClearAdapter{},
 }
 
 func ExecuteCommand(input string) {
