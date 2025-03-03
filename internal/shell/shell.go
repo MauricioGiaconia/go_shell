@@ -15,7 +15,7 @@ var CommandRegistry = map[string]ports.CommandPort{
 
 func ExecuteCommand(input string) {
 	args := strings.Fields(input)
-	fmt.Println(args)
+
 	if len(args) == 0 {
 		return
 	}
