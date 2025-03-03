@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/MauricioGiaconia/go_shell/internal/adapters"
-	"github.com/MauricioGiaconia/go_shell/internal/ports"
+	"go_shell/internal/adapters"
+	"go_shell/internal/ports"
 )
 
 var CommandRegistry = map[string]ports.CommandPort{

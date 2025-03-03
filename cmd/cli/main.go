@@ -3,10 +3,9 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"go_shell/internal/shell"
 	"os"
 	"strings"
-
-	"github.com/MauricioGiaconia/go_shell/internal/shell"
 )
 
 func main() {
