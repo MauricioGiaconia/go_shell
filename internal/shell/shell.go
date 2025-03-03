@@ -10,10 +10,12 @@ import (
 
 var CommandRegistry = map[string]ports.CommandPort{
 	"echo": adapters.EchoAdapter{},
+	"ls":   adapters.LsAdapter{},
 }
 
 func ExecuteCommand(input string) {
 	args := strings.Fields(input)
+	fmt.Println(args)
 	if len(args) == 0 {
 		return
 	}
