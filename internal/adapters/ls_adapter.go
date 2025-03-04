@@ -2,17 +2,18 @@ package adapters
 
 import (
 	"fmt"
+	"go_shell/internal/ports"
 	"os"
 	"strings"
 )
 
 type LsAdapter struct{}
 
-func (LsAdapter) Execute(args []string) string {
+func (LsAdapter) Execute(params ports.CommandParams) (*string, error) {
 	files, err := os.ReadDir(".")
 
 	if err != nil {
-		return "Error to list files"
+		return nil, fmt.Errorf("error to list files")
 	}
 
 	var names []string
@@ -28,5 +29,7 @@ func (LsAdapter) Execute(args []string) string {
 		names = append(names, fileName)
 	}
 
-	return strings.Join(names, " - ")
+	filesToPrint := strings.Join(names, " - ")
+
+	return &filesToPrint, nil
 }

@@ -20,7 +20,7 @@ func main() {
 	}
 
 	for {
-		fmt.Print(fmt.Sprintf("\033[38;2;0;255;255m%s\033[0m Let's GO $ ", currentPath))
+		fmt.Printf("\033[38;2;0;255;255m%s\033[0m Let's GO $ ", currentPath)
 		input, _ := reader.ReadString('\n')
 		input = strings.TrimSpace(input)
 
@@ -29,6 +29,6 @@ func main() {
 			break
 		}
 
-		shell.ExecuteCommand(input)
+		shell.ExecuteCommand(input, &currentPath)
 	}
 }
