@@ -14,6 +14,7 @@ var CommandRegistry = map[string]interface{}{
 	"clear": adapters.ClearAdapter{},
 	"goto":  adapters.GoToAdapter{},
 	"pwd":   adapters.PwdAdapter{},
+	"rm":    adapters.RemoveAdapter{},
 }
 
 func ExecuteCommand(input string, currentPath *string) {
