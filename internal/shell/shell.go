@@ -13,6 +13,7 @@ var CommandRegistry = map[string]interface{}{
 	"ls":    adapters.LsAdapter{},
 	"clear": adapters.ClearAdapter{},
 	"goto":  adapters.GoToAdapter{},
+	"pwd":   adapters.PwdAdapter{},
 }
 
 func ExecuteCommand(input string, currentPath *string) {
