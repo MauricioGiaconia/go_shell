@@ -8,7 +8,7 @@ import (
 	"go_shell/internal/ports"
 )
 
-var CommandRegistry = map[string]ports.CommandPort{
+var CommandRegistry = map[string]interface{}{
 	"echo":  adapters.EchoAdapter{},
 	"ls":    adapters.LsAdapter{},
 	"clear": adapters.ClearAdapter{},
@@ -16,6 +16,8 @@ var CommandRegistry = map[string]ports.CommandPort{
 }
 
 func ExecuteCommand(input string, currentPath *string) {
+	var result *string
+	var err error
 	args := strings.Fields(input)
 
 	if len(args) == 0 {
@@ -23,20 +25,37 @@ func ExecuteCommand(input string, currentPath *string) {
 	}
 
 	command, exists := CommandRegistry[args[0]]
+
 	if !exists {
 		fmt.Println("Command not found:", args[0])
 		return
 	}
 
-	params := ports.CommandParams{
-		Args:        args[1:],
-		CurrentPath: currentPath,
-	}
+	switch cmd := command.(type) {
 
-	result, err := command.Execute(params)
+	case ports.CommandWithoutParams:
+		result, err = cmd.Execute()
 
-	if err != nil {
-		fmt.Println("Error to execute command:", err)
+		if err != nil {
+			fmt.Println("Error to execute command:", err)
+			return
+		}
+
+	case ports.CommandPort:
+		params := ports.CommandParams{
+			Args:        args[1:],
+			CurrentPath: currentPath,
+		}
+
+		result, err = cmd.Execute(params)
+
+		if err != nil {
+			fmt.Println("Error to execute command:", err)
+			return
+		}
+
+	default:
+		fmt.Println("Command not found:", args[0])
 		return
 	}
 

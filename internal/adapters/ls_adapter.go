@@ -2,14 +2,13 @@ package adapters
 
 import (
 	"fmt"
-	"go_shell/internal/ports"
 	"os"
 	"strings"
 )
 
 type LsAdapter struct{}
 
-func (LsAdapter) Execute(params ports.CommandParams) (*string, error) {
+func (LsAdapter) Execute() (*string, error) {
 	files, err := os.ReadDir(".")
 
 	if err != nil {
