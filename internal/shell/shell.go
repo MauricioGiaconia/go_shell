@@ -19,7 +19,7 @@ func ExecuteCommand(input string, currentPath *string) {
 		return
 	}
 
-	command, exists := CommandRegistry[args[0]]
+	command, exists := CommandRegistry[strings.ToLower(args[0])]
 
 	if !exists {
 		fmt.Println("Command not found:", args[0])
