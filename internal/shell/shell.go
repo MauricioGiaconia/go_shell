@@ -4,18 +4,11 @@ import (
 	"fmt"
 	"strings"
 
-	"go_shell/internal/adapters"
+	"go_shell/internal/commands"
 	"go_shell/internal/ports"
 )
 
-var CommandRegistry = map[string]interface{}{
-	"echo":  adapters.EchoAdapter{},
-	"ls":    adapters.LsAdapter{},
-	"clear": adapters.ClearAdapter{},
-	"goto":  adapters.GoToAdapter{},
-	"pwd":   adapters.PwdAdapter{},
-	"rm":    adapters.RemoveAdapter{},
-}
+var CommandRegistry = commands.SetupCommands()
 
 func ExecuteCommand(input string, currentPath *string) {
 	var result *string
