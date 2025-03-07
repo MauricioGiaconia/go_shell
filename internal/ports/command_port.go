@@ -1,11 +1,15 @@
 package ports
 
+type BaseCommandPort interface {
+	GetDescription() string
+}
+
 type CommandPort interface {
 	Execute(params CommandParams) (*string, error)
-	GetDescription() string
+	BaseCommandPort
 }
 
 type CommandWithoutParams interface {
 	Execute() (*string, error)
-	GetDescription() string
+	BaseCommandPort
 }
