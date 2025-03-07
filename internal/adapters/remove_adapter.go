@@ -22,3 +22,9 @@ func (RemoveAdapter) Execute(params ports.CommandParams) (*string, error) {
 
 	return nil, nil
 }
+
+func (RemoveAdapter) GetDescription() string {
+	instruction := "This command will delete a specified file"
+
+	return instruction
+}

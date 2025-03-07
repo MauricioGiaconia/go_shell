@@ -14,3 +14,9 @@ func (PwdAdapter) Execute() (*string, error) {
 
 	return &currentPath, nil
 }
+
+func (PwdAdapter) GetDescription() string {
+	instruction := "This command will print the current path"
+
+	return instruction
+}

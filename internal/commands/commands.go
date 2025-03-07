@@ -10,6 +10,7 @@ func SetupCommands() map[string]interface{} {
 		"goto":  adapters.GoToAdapter{},
 		"pwd":   adapters.PwdAdapter{},
 		"rm":    adapters.RemoveAdapter{},
+		"help":  adapters.HelpAdapter{},
 	}
 	return commands
 }

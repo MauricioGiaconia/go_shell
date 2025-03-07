@@ -8,3 +8,9 @@ func (ClearAdapter) Execute() (*string, error) {
 
 	return &clearCommand, nil
 }
+
+func (ClearAdapter) GetDescription() string {
+	instruction := "This command will delete all instructions written in the console"
+
+	return instruction
+}

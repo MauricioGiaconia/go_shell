@@ -32,3 +32,9 @@ func (LsAdapter) Execute() (*string, error) {
 
 	return &filesToPrint, nil
 }
+
+func (LsAdapter) GetDescription() string {
+	instruction := "This command will print all existing files in the current path"
+
+	return instruction
+}

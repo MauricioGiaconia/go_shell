@@ -23,3 +23,9 @@ func (GoToAdapter) Execute(params ports.CommandParams) (*string, error) {
 
 	return nil, nil
 }
+
+func (GoToAdapter) GetDescription() string {
+	instruction := "This command will navigate you to the indicated path"
+
+	return instruction
+}

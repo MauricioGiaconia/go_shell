@@ -37,6 +37,7 @@ func ExecuteCommand(args []string, currentPath *string) (*string, error) {
 		params := ports.CommandParams{
 			Args:        args[1:],
 			CurrentPath: currentPath,
+			Commands:    CommandRegistry,
 		}
 
 		result, err = cmd.Execute(params)

@@ -25,5 +25,8 @@ func ExecuteCommand(input string, currentPath *string) {
 		return
 	}
 
-	fmt.Println(*result)
+	if result != nil {
+		fmt.Println(*result)
+	}
+
 }
