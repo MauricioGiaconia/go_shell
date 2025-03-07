@@ -19,7 +19,7 @@ func (HelpAdapter) Execute(params ports.CommandParams) (*string, error) {
 
 	for key, value := range params.Commands {
 		format := fmt.Sprintf("\033[38;2;0;173;216m %%-%ds\033[0m - %%s\n", maxKeyLength)
-		fmt.Printf(format, key, value.(interface{ GetDescription() string }).GetDescription())
+		fmt.Printf(format, key, value.GetDescription())
 	}
 
 	return nil, nil
