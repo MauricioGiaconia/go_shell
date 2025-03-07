@@ -18,11 +18,8 @@ func (HelpAdapter) Execute(params ports.CommandParams) (*string, error) {
 	}
 
 	for key, value := range params.Commands {
-		switch v := value.(type) {
-		case ports.CommandPort, ports.CommandWithoutParams:
-			format := fmt.Sprintf("\033[38;2;0;173;216m %%-%ds\033[0m - %%s\n", maxKeyLength)
-			fmt.Printf(format, key, v.(interface{ GetDescription() string }).GetDescription())
-		}
+		format := fmt.Sprintf("\033[38;2;0;173;216m %%-%ds\033[0m - %%s\n", maxKeyLength)
+		fmt.Printf(format, key, value.(interface{ GetDescription() string }).GetDescription())
 	}
 
 	return nil, nil
