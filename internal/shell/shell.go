@@ -5,56 +5,26 @@ import (
 	"strings"
 
 	"go_shell/internal/commands"
-	"go_shell/internal/ports"
+	"go_shell/internal/executor"
 )
 
 var CommandRegistry = commands.SetupCommands()
 
 func ExecuteCommand(input string, currentPath *string) {
-	var result *string
-	var err error
+
+	if input == "" {
+		fmt.Println("Empty input")
+		return
+	}
+
 	args := strings.Fields(input)
 
-	if len(args) == 0 {
+	result, err := executor.ExecuteCommand(args, currentPath)
+
+	if err != nil {
+		fmt.Printf("Error: %s\n", err)
 		return
 	}
 
-	command, exists := CommandRegistry[strings.ToLower(args[0])]
-
-	if !exists {
-		fmt.Println("Command not found:", args[0])
-		return
-	}
-
-	switch cmd := command.(type) {
-
-	case ports.CommandWithoutParams:
-		result, err = cmd.Execute()
-
-		if err != nil {
-			fmt.Println("Error to execute command:", err)
-			return
-		}
-
-	case ports.CommandPort:
-		params := ports.CommandParams{
-			Args:        args[1:],
-			CurrentPath: currentPath,
-		}
-
-		result, err = cmd.Execute(params)
-
-		if err != nil {
-			fmt.Println("Error to execute command:", err)
-			return
-		}
-
-	default:
-		fmt.Println("Command not found:", args[0])
-		return
-	}
-
-	if result != nil {
-		fmt.Println(*result)
-	}
+	fmt.Println(*result)
 }
