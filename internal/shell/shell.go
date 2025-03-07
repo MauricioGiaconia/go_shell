@@ -13,7 +13,6 @@ var CommandRegistry = commands.SetupCommands()
 func ExecuteCommand(input string, currentPath *string) {
 
 	if input == "" {
-		fmt.Println("Empty input")
 		return
 	}
 
