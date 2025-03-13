@@ -7,13 +7,13 @@ import (
 
 func SetupCommands() map[string]ports.BaseCommandPort {
 	commands := map[string]ports.BaseCommandPort{
-		"echo":  adapters.EchoAdapter{},
-		"ls":    adapters.LsAdapter{},
-		"clear": adapters.ClearAdapter{},
-		"goto":  adapters.GoToAdapter{},
-		"pwd":   adapters.PwdAdapter{},
-		"rm":    adapters.RemoveAdapter{},
-		"help":  adapters.HelpAdapter{},
+		"go-echo":  adapters.EchoAdapter{},
+		"go-ls":    adapters.LsAdapter{},
+		"go-clear": adapters.ClearAdapter{},
+		"go-to":    adapters.GoToAdapter{},
+		"go-pwd":   adapters.PwdAdapter{},
+		"go-rm":    adapters.RemoveAdapter{},
+		"go-help":  adapters.HelpAdapter{},
 	}
 	return commands
 }

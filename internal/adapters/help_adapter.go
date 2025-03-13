@@ -3,6 +3,7 @@ package adapters
 import (
 	"fmt"
 	"go_shell/internal/ports"
+	"sync"
 )
 
 type HelpAdapter struct{}
@@ -17,10 +18,18 @@ func (HelpAdapter) Execute(params ports.CommandParams) (*string, error) {
 		}
 	}
 
+	wg := sync.WaitGroup{}
+	wg.Add(len(params.Commands))
+
 	for key, value := range params.Commands {
-		format := fmt.Sprintf("\033[38;2;0;173;216m %%-%ds\033[0m - %%s\n", maxKeyLength)
-		fmt.Printf(format, key, value.GetDescription())
+		go func() {
+			format := fmt.Sprintf("\033[38;2;0;173;216m %%-%ds\033[0m - %%s\n", maxKeyLength)
+			fmt.Printf(format, key, value.GetDescription())
+			wg.Done()
+		}()
 	}
+
+	wg.Wait()
 
 	return nil, nil
 }
